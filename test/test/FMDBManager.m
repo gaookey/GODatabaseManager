@@ -31,7 +31,7 @@
         _dataBase = [[FMDatabase alloc] initWithPath:path];
         [_dataBase open];
 
-        NSString *sql = @"create table if not exists personTable(id integer primary key autoincrement,ID varchar(256), name varchar(256),age varchar(256),height varchar(256),sex varchar(256))";
+        NSString *sql = @"create table if not exists personTable(id integer primary key autoincrement, name varchar(256), age varchar(256), height varchar(256), sex varchar(256))";
         
         if ([_dataBase executeUpdate:sql]) {
             NSLog(@"建表成功");
@@ -44,7 +44,7 @@
 
 - (BOOL)insert:(MyModel *)model
 {
-    NSString *sql = @"insert into personTable(ID, name, age, height, sex)values(?,?,?,?,?)";
+    NSString *sql = @"insert into personTable(id, name, age, height, sex)values(?,?,?,?,?)";
     
     if ([_dataBase executeUpdate:sql,model.ID, model.name, model.age, model.height, model.sex]) {
         return YES;
@@ -55,7 +55,7 @@
 
 - (BOOL)deleteWithId:(NSString *)Id
 {
-    NSString *sql = @"delete from personTable where ID = ?";
+    NSString *sql = @"delete from personTable where id = ?";
     
     if ([_dataBase executeUpdate:sql,Id]) {
         return YES;
@@ -65,7 +65,7 @@
 }
 - (BOOL)update:(NSString *)Id key:(NSString *)key value:(NSString *)value
 {
-    NSString *sql = [NSString stringWithFormat:@"update personTable set %@ = ? where ID = ?",key];
+    NSString *sql = [NSString stringWithFormat:@"update personTable set %@ = ? where id = ?",key];
     
     if ([_dataBase executeUpdate:sql,value,Id]) {
         return YES;
@@ -85,7 +85,7 @@
         
         MyModel *model = [[MyModel alloc] init];
         
-        model.ID = [s stringForColumn:@"ID"];
+        model.ID = [s stringForColumn:@"id"];
         model.name = [s stringForColumn:@"name"];
         model.age = [s stringForColumn:@"age"];
         model.height = [s stringForColumn:@"height"];
@@ -107,7 +107,7 @@
         
         MyModel *model = [[MyModel alloc] init];
         
-        model.ID = [s stringForColumn:@"ID"];
+        model.ID = [s stringForColumn:@"id"];
         model.name = [s stringForColumn:@"name"];
         model.age = [s stringForColumn:@"age"];
         model.height = [s stringForColumn:@"height"];
@@ -132,7 +132,7 @@
 }
 - (BOOL)isInclude:(NSString *)Id
 {
-    NSString *sql = @"select *from personTable where ID = ?";
+    NSString *sql = @"select *from personTable where id = ?";
     
     FMResultSet *set = [_dataBase executeQuery:sql,Id];
     

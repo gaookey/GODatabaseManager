@@ -25,41 +25,39 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if ([[FMDBManager shareInstance] isInclude:@"118"]) {
+    /*
+    if ([[FMDBManager shareInstance] isInclude:@"18"]) {
         NSLog(@"有");
     } else {
         NSLog(@"没有");
     }
-    
-    /*
+
     NSInteger count = [[FMDBManager shareInstance] count];
-    NSLog(@"%ld",(long)count);
-    
+
     NSArray *arr = [[FMDBManager shareInstance] selectAll];
-    NSLog(@"%@",arr);
-    
+
     NSArray *arr = [[FMDBManager shareInstance] selectLimit:3 number:5];
+
+    [[FMDBManager shareInstance] update:@"107" key:@"age" value:@"456"];
     
-    [[FMDBManager shareInstance] update:@"7" key:@"age" value:@"456"];
-    
-    [[FMDBManager shareInstance] deleteWithId:@"2"];
+    [[FMDBManager shareInstance] deleteWithId:@"102"];
+    */
     
     for (int i = 0; i < 20; i ++)
     {
-        self.model.ID = [NSString stringWithFormat:@"%d",i];
+        self.model.ID = [NSString stringWithFormat:@"%d",i + 100];
         self.model.name = [NSString stringWithFormat:@"名字%d",i];
         self.model.age = [NSString stringWithFormat:@"2%d",i];
         self.model.height = [NSString stringWithFormat:@"1.%d",i];
-        
+
         if (i % 2 == 0) {
             self.model.sex = @"1";
         } else {
             self.model.sex = @"2";
         }
-        
+
         [[FMDBManager shareInstance] insert:self.model];
     }
-    */
 }
 
 - (MyModel *)model {
