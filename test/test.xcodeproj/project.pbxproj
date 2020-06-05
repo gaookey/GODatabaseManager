@@ -15,9 +15,9 @@
 		044A6FEB212D5BFE00595F73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A6FEA212D5BFE00595F73 /* main.m */; };
 		044A6FF5212D5BFE00595F73 /* testTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A6FF4212D5BFE00595F73 /* testTests.m */; };
 		044A7000212D5BFF00595F73 /* testUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A6FFF212D5BFF00595F73 /* testUITests.m */; };
-		044A700F212D5CB800595F73 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A700E212D5CB800595F73 /* FMDBManager.m */; };
 		044A7012212D5D2900595F73 /* MyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 044A7011212D5D2900595F73 /* MyModel.m */; };
 		B7FA42318530CB24C6A032E4 /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6520838DE0DCFAE52D3D943D /* libPods-test.a */; };
+		BB9E81B6248AC73A008B5897 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9E81B5248AC73A008B5897 /* DatabaseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,13 +54,13 @@
 		044A6FFB212D5BFF00595F73 /* testUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		044A6FFF212D5BFF00595F73 /* testUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testUITests.m; sourceTree = "<group>"; };
 		044A7001212D5BFF00595F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		044A700D212D5CB800595F73 /* FMDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDBManager.h; sourceTree = "<group>"; };
-		044A700E212D5CB800595F73 /* FMDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDBManager.m; sourceTree = "<group>"; };
 		044A7010212D5D2900595F73 /* MyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyModel.h; sourceTree = "<group>"; };
 		044A7011212D5D2900595F73 /* MyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyModel.m; sourceTree = "<group>"; };
 		6520838DE0DCFAE52D3D943D /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9C0A951B367855AA4184D1 /* Pods-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.release.xcconfig"; path = "Pods/Target Support Files/Pods-test/Pods-test.release.xcconfig"; sourceTree = "<group>"; };
 		A208B5BAD37A9B4C32724D36 /* Pods-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-test/Pods-test.debug.xcconfig"; sourceTree = "<group>"; };
+		BB9E81B4248AC73A008B5897 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
+		BB9E81B5248AC73A008B5897 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +118,8 @@
 				044A6FDC212D5BFE00595F73 /* AppDelegate.m */,
 				044A6FDE212D5BFE00595F73 /* ViewController.h */,
 				044A6FDF212D5BFE00595F73 /* ViewController.m */,
-				044A700D212D5CB800595F73 /* FMDBManager.h */,
-				044A700E212D5CB800595F73 /* FMDBManager.m */,
+				BB9E81B4248AC73A008B5897 /* DatabaseManager.h */,
+				BB9E81B5248AC73A008B5897 /* DatabaseManager.m */,
 				044A7010212D5D2900595F73 /* MyModel.h */,
 				044A7011212D5D2900595F73 /* MyModel.m */,
 				044A6FE1212D5BFE00595F73 /* Main.storyboard */,
@@ -318,10 +318,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				044A700F212D5CB800595F73 /* FMDBManager.m in Sources */,
 				044A7012212D5D2900595F73 /* MyModel.m in Sources */,
 				044A6FE0212D5BFE00595F73 /* ViewController.m in Sources */,
 				044A6FEB212D5BFE00595F73 /* main.m in Sources */,
+				BB9E81B6248AC73A008B5897 /* DatabaseManager.m in Sources */,
 				044A6FDD212D5BFE00595F73 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
