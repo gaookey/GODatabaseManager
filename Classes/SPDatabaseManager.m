@@ -1,5 +1,6 @@
 
 #import "SPDatabaseManager.h"
+#import <FMDatabase.h>
 
 @interface SPDatabaseManager ()
 
