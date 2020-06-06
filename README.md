@@ -1,9 +1,5 @@
 # SPDatabaseManager
 
-### 安装
-
-使用 `CocoaPods` 安装: `pod 'SPDatabaseManager'`
-
 
 
 ### FMDB数据库操作部分方法
