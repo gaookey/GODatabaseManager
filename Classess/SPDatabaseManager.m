@@ -1,23 +1,16 @@
-//
-//  DatabaseManager.m
-//  test
-//
-//  Created by MAC on 2018/8/22.
-//  Copyright © 2018年 MAC. All rights reserved.
-//
 
-#import "DatabaseManager.h"
+#import "SPDatabaseManager.h"
 #import <FMDatabase.h>
 
-@interface DatabaseManager ()
+@interface SPDatabaseManager ()
 
 @property (nonatomic, strong) FMDatabase *dataBase;
 
 @end
 
-@implementation DatabaseManager
+@implementation SPDatabaseManager
 
-static DatabaseManager *instance = nil;
+static SPDatabaseManager *instance = nil;
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
@@ -47,13 +40,13 @@ static DatabaseManager *instance = nil;
     return NO;
 }
 
-- (BOOL)insert:(NSString *)table keys:(NSArray *)keys values:(NSArray *)values {
+- (BOOL)insert:(NSString *)table arguments:(NSDictionary *)arguments {
     
     NSMutableArray *ask = [NSMutableArray array];
-    for (NSInteger i = 0; i < keys.count; i ++) {
-        [ask addObject:[NSString stringWithFormat:@"'%@'", values[i]]];
+    for (NSInteger i = 0; i < arguments.allKeys.count; i ++) {
+        [ask addObject:[NSString stringWithFormat:@"'%@'", arguments.allValues[i]]];
     }
-    NSString *keyStr = [keys componentsJoinedByString:@", "];
+    NSString *keyStr = [arguments.allKeys componentsJoinedByString:@", "];
     NSString *valueStr = [ask componentsJoinedByString:@", "];
     
     NSMutableString *sql = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", table, keyStr, valueStr]];
@@ -72,34 +65,43 @@ static DatabaseManager *instance = nil;
     return NO;
 }
 
-- (BOOL)update:(NSString *)table Id:(NSString *)Id key:(NSString *)key value:(NSString *)value {
+- (BOOL)update:(NSString *)table key:(NSString *)key arguments:(NSDictionary *)arguments {
     
-    NSMutableString *sql = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"UPDATE %@ SET %@ = '%@' WHERE id = %@", table, key, value, Id]];
+    NSString *k = arguments.allKeys.firstObject;
+    NSString *v = arguments.allValues.firstObject;
+    
+    NSMutableString *sql = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"UPDATE %@ SET %@ = '%@' WHERE id = %@", table, k, v, key]];
     if ([instance.dataBase executeUpdate:sql]) {
         return YES;
     }
     return NO;
 }
 
-- (NSMutableArray *)selectAll:(NSString *)table {
+- (NSArray *)select:(NSString *)table {
     
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ ", table];
     return [self selectTable:sql arguments:@[]];
 }
 
-- (NSMutableArray *)select:(NSString *)table startIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex {
-    
-    NSString *sql = [NSString stringWithFormat:@"SELECT *FROM %@ LIMIT %ld, %ld", table, (long)startIndex, (long)endIndex];
-    return [self selectTable:sql arguments:@[]];
-}
-
-- (NSMutableArray *)selectAll:(NSString *)table arguments:(NSArray *)arguments {
+- (NSArray *)select:(NSString *)table arguments:(NSArray *)arguments {
     
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ ", table];
     return [self selectTable:sql arguments:arguments];
 }
 
-- (NSMutableArray *)selectTable:(NSString *)sql arguments:(NSArray *)arguments {
+- (NSArray *)select:(NSString *)table range:(NSRange)range {
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT *FROM %@ LIMIT %lu, %lu", table, (unsigned long)range.location, (unsigned long)range.length];
+    return [self selectTable:sql arguments:@[]];
+}
+
+- (NSArray *)select:(NSString *)table arguments:(NSArray *)arguments range:(NSRange)range {
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT *FROM %@ LIMIT %lu, %lu", table, (unsigned long)range.location, (unsigned long)range.length];
+    return [self selectTable:sql arguments:arguments];
+}
+
+- (NSArray *)selectTable:(NSString *)sql arguments:(NSArray *)arguments {
     
     FMResultSet *s = [_dataBase executeQuery:sql];
     
@@ -123,7 +125,7 @@ static DatabaseManager *instance = nil;
         }
         [result addObject:dict];
     }
-    return result;
+    return [NSArray arrayWithArray:result];
 }
 
 - (NSUInteger)totalCount:(NSString *)table {
