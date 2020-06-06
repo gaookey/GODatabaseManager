@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
   spec.author              = { "高文立" => "swiftprimer@gmail.com" }
   spec.platform            = :ios, "10.0"
   spec.source              = { :git => "https://github.com/mouos/SPDatabaseManager.git", :tag => "#{spec.version}" }
-  spec.source_files        = "Classes", "Classes/**/*.{h,m}"
+  spec.source_files        = "Classes"
   spec.exclude_files       = "Classes/Exclude"
   spec.public_header_files = "Classes/**/*.h"
   spec.dependency "FMDB"
