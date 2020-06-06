@@ -1,6 +1,12 @@
 # SPDatabaseManager
 
-FMDB数据库操作相关
+### 安装
+
+使用 `CocoaPods` 安装: `pod 'SPDatabaseManager'`
+
+
+
+### FMDB数据库操作部分方法
 
 ```objective-c
 - (BOOL)createTable:(NSString *)table arguments:(NSArray *)arguments ;
