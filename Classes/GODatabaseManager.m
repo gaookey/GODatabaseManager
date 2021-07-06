@@ -1,16 +1,16 @@
 
-#import "SPDatabaseManager.h"
+#import "GODatabaseManager.h"
 #import <FMDatabase.h>
 
-@interface SPDatabaseManager ()
+@interface GODatabaseManager ()
 
 @property (nonatomic, strong) FMDatabase *dataBase;
 
 @end
 
-@implementation SPDatabaseManager
+@implementation GODatabaseManager
 
-static SPDatabaseManager *instance = nil;
+static GODatabaseManager *instance = nil;
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;

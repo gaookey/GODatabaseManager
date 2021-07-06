@@ -1,7 +1,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SPDatabaseManager : NSObject
+@interface GODatabaseManager : NSObject
 
 + (instancetype)sharedInstance ;
 
